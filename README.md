@@ -2,11 +2,6 @@
 
 A digital cemetery for your abandoned projects. Share your unfinished work, write a postmortem on what went wrong, and let others learn from your glorious failures.
 
-![Project Graveyard Screenshot](https://i.imgur.com/your-screenshot-url.png) 
-*(Suggestion: Take a screenshot of your running application and replace the URL above to showcase your project!)*
-
----
-
 ## Features
 
 -   **Bury a Project**: Add your abandoned projects with a title, GitHub link, and relevant tags.
