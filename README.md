@@ -2,6 +2,11 @@
 
 A digital cemetery for your abandoned projects. Share your unfinished work, write a postmortem on what went wrong, and let others learn from your glorious failures.
 
+##Project Proposal
+
+The full-written proposal for this program is made on Google Docs which is accessible via the following link:
+https://docs.google.com/document/d/1YVl6AN_ugHvHM77sDw4WsmzYOt5SHqKmDr4RGbcPD-s/edit?usp=sharing
+
 ## Features
 
 -   **Bury a Project**: Add your abandoned projects with a title, GitHub link, and relevant tags.
