@@ -2,10 +2,10 @@
 
 A digital cemetery for your abandoned projects. Share your unfinished work, write a postmortem on what went wrong, and let others learn from your glorious failures.
 
-![Project Graveyard Screenshot](https://i.imgur.com/your-screenshot-url.png) 
-*(Suggestion: Take a screenshot of your running application and replace the URL above to showcase your project!)*
+### Project Proposal
 
----
+The full-written proposal for this program is made on Google Docs which is accessible via the following link:
+https://docs.google.com/document/d/1YVl6AN_ugHvHM77sDw4WsmzYOt5SHqKmDr4RGbcPD-s/edit?usp=sharing
 
 ## Features
 
@@ -42,8 +42,31 @@ First, clone the project to your local machine.
 ```bash
 git clone [https://github.com/your-username/project-graveyard.git](https://github.com/your-username/project-graveyard.git)
 cd project-graveyard
-2. Install DependenciesInstall all the necessary npm packages.npm install
-3. Set Up FirebaseThis project requires a Firebase project to handle the backend database and user authentication.Create a Firebase Project:Go to the Firebase Console.Click "+ Add project" and give it a name (e.g., "project-graveyard-app").Disable Google Analytics for this project when prompted.Add a Web App to your Project:On your project's dashboard, click the web icon (</>).Give the app a nickname and click "Register app".Get Firebase Config Keys:After registering, Firebase will show you a firebaseConfig object. Copy these keys.Create a Configuration File:In the project-graveyard/app/ directory, create a new file named config.js.Paste your keys into this file like so:// In app/config.js
+```
+### 2. Install Dependencies
+   
+Install all the necessary npm packages.npm install
+
+### 3. Set Up Firebase
+   
+This project requires a Firebase project to handle the backend database and user authentication.
+Create a Firebase Project: Go to the Firebase Console.
+Click "+ Add project" and give it a name (e.g., "project-graveyard-app").
+Disable Google Analytics for this project when prompted.
+Add a Web App to your Project:
+
+On your project's dashboard, click the web icon (</>). Give the app a nickname and click "Register app". 
+
+Get Firebase Config Keys:
+
+After registering, Firebase will show you a firebaseConfig object. Copy these keys.
+
+Create a Configuration File:
+
+In the project-graveyard/app/ directory, create a new file named config.js. Paste your keys into this file like so:
+
+```bash
+// In app/config.js
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
@@ -80,7 +103,15 @@ service cloud.firestore {
     }
   }
 }
-Click "Publish".4. Run the Development ServerYou're all set! Run the development server to see your app in action.npm run dev
+```
+Click "Publish".
+
+### 4. Run the Development Server
+
+You're all set! Run the development server to see your app in action.
+
+```bash
+npm run dev
 Open http://localhost:3000 with your browser to see the result.Project Structure/project-graveyard
 |
 ├── /app

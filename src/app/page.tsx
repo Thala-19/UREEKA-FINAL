@@ -3,15 +3,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import { signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { collection, doc, addDoc, onSnapshot, updateDoc, increment, query, setDoc } from 'firebase/firestore';
-// Corrected import path for config.js
 import { db, auth, appId } from './config.js';
 
-// Corrected imports with .js extension
 import ProjectCard from './components/ProjectCard.js';
 import AddProjectModal from './components/AddProjectModal.js';
 import CommentsModal from './components/CommentsModal.js';
 
-// --- FIX: Define the "shape" of our data for TypeScript ---
 interface Project {
     id: string;
     title: string;
@@ -20,7 +17,6 @@ interface Project {
     blurb: string;
     upvotes: number;
     submitterId: string;
-    createdAt: any; // Using 'any' for Firebase Timestamps is simpler here
 }
 
 interface Comment {
@@ -30,10 +26,8 @@ interface Comment {
     createdAt: any;
 }
 
-// --- Main Component ---
 export default function ProjectGraveyard() {
     const [userId, setUserId] = useState<string | null>(null);
-    // --- FIX: Use our new types with useState ---
     const [projects, setProjects] = useState<Project[]>([]);
     const [showAddModal, setShowAddModal] = useState(false);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -41,7 +35,6 @@ export default function ProjectGraveyard() {
     const [upvotedProjects, setUpvotedProjects] = useState<{ [key: string]: boolean }>({});
 
 
-    // --- Firebase Auth (No changes needed here) ---
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             if (user) {
@@ -55,12 +48,10 @@ export default function ProjectGraveyard() {
         return () => unsubscribe();
     }, []);
 
-    // --- Data Fetching: Projects ---
     useEffect(() => {
         const projectsCollectionPath = `/artifacts/${appId}/public/data/projects`;
         const q = query(collection(db, projectsCollectionPath));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            // --- FIX: Tell TypeScript the type of our data array ---
             const projectsData: Project[] = [];
             querySnapshot.forEach((doc) => {
                 projectsData.push({ id: doc.id, ...doc.data() } as Project);
@@ -70,7 +61,6 @@ export default function ProjectGraveyard() {
         return () => unsubscribe();
     }, []);
     
-    // --- Data Fetching: User's Upvotes (No changes needed here) ---
     useEffect(() => {
         if (!userId) return;
         const userUpvotesDocPath = `/artifacts/${appId}/users/${userId}/upvotes/projects`;
@@ -85,7 +75,6 @@ export default function ProjectGraveyard() {
         return () => unsubscribe();
     }, [userId]);
 
-    // --- Data Fetching: Comments for Selected Project ---
     useEffect(() => {
         if (!selectedProject) {
             setComments([]);
@@ -94,7 +83,6 @@ export default function ProjectGraveyard() {
         const commentsCollectionPath = `/artifacts/${appId}/public/data/projects/${selectedProject.id}/comments`;
         const q = query(collection(db, commentsCollectionPath));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            // --- FIX: Tell TypeScript the type of our data array ---
             const commentsData: Comment[] = [];
             querySnapshot.forEach((doc) => {
                 commentsData.push({ id: doc.id, ...doc.data() } as Comment);
@@ -105,7 +93,6 @@ export default function ProjectGraveyard() {
     }, [selectedProject]);
 
 
-    // --- Handlers (No logic changes, but now they are type-safe) ---
     const handleAddProject = async (projectData: { title: string, githubLink: string, tags: string, blurb: string }) => {
         if (!userId) return;
         try {
@@ -163,7 +150,6 @@ export default function ProjectGraveyard() {
     }, [projects]);
 
 
-    // --- JSX (No changes needed here) ---
     return (
         <div className="bg-gray-900 text-gray-200 min-h-screen font-sans">
             <header className="p-6 border-b border-gray-700 flex justify-between items-center">

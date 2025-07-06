@@ -36,6 +36,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# OUR ADDITION - VERY IMPORTANT
 # Ignore our Firebase config file
 /src/app/config.js
